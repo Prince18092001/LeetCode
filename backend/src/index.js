@@ -15,7 +15,14 @@ const cors = require('cors')
 // console.log("Hello")
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps, curl, or server-side proxies)
+        // or any localhost / vercel.app origin
+        if (!origin || origin.startsWith('http://localhost') || origin.endsWith('.vercel.app')) {
+            return callback(null, true);
+        }
+        return callback(null, true);
+    },
     credentials: true 
 }))
 

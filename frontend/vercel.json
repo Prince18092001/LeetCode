@@ -1,0 +1,28 @@
+{
+  "rewrites": [
+    {
+      "source": "/user/:path*",
+      "destination": "http://74.225.195.186:3000/user/:path*"
+    },
+    {
+      "source": "/problem/:path*",
+      "destination": "http://74.225.195.186:3000/problem/:path*"
+    },
+    {
+      "source": "/submission/:path*",
+      "destination": "http://74.225.195.186:3000/submission/:path*"
+    },
+    {
+      "source": "/ai/:path*",
+      "destination": "http://74.225.195.186:3000/ai/:path*"
+    },
+    {
+      "source": "/video/:path*",
+      "destination": "http://74.225.195.186:3000/video/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
