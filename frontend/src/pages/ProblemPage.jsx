@@ -425,9 +425,21 @@ const ProblemPage = () => {
                                 <div className="font-mono">
                                   <div><strong>Input:</strong> {tc.stdin}</div>
                                   <div><strong>Expected:</strong> {tc.expected_output}</div>
-                                  <div><strong>Output:</strong> {tc.stdout || tc.stderr || "No output"}</div>
-                                  <div className={tc.status_id === 3 ? 'text-green-600' : 'text-red-600'}>
-                                    {tc.status_id === 3 ? '✓ Passed' : '✗ Failed'}
+                                  <div><strong>Output:</strong> {tc.stdout || "No output"}</div>
+                                  {tc.compile_output && (
+                                    <div className="text-error whitespace-pre-wrap mt-1">
+                                      <strong>Compiler Error:</strong> {tc.compile_output}
+                                    </div>
+                                  )}
+                                  {tc.stderr && (
+                                    <div className="text-error whitespace-pre-wrap mt-1">
+                                      <strong>Runtime Error:</strong> {tc.stderr}
+                                    </div>
+                                  )}
+                                  <div className={tc.status_id === 3 ? 'text-green-600 font-bold mt-1' : 'text-red-600 font-bold mt-1'}>
+                                    {tc.status_id === 3 
+                                      ? '✓ Passed' 
+                                      : `✗ Failed (${tc.status?.description || (tc.status_id === 6 ? 'Compilation Error' : tc.status_id === 4 ? 'Wrong Answer' : 'Runtime Error')})`}
                                   </div>
                                 </div>
                               </div>
